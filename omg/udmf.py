@@ -345,14 +345,14 @@ class UMapEditor:
             for f in range(len(ULinedef.flags[namespace])):
                 flag = ULinedef.flags[namespace][f]
                 if flag:
-                    setattr(block, flag, linedef.flags & (1 << f))
+                    setattr(block, flag, bool(linedef.flags & (1 << f)))
             if hexencompat:
                 trigger = ((linedef.flags & 0x1c00) >> 10) - 1
                 if trigger >= 0 and trigger < len(ULinedef.triggers_hexen):
                     setattr(block, ULinedef.triggers_hexen[trigger], True)
             if hexencompat and linedef.action == 121:
                 for f in range(len(ULinedef.moreflags_hexen)):
-                    setattr(block, ULinedef.moreflags_hexen[f], linedef.arg1 & (1 << f))
+                    setattr(block, ULinedef.moreflags_hexen[f], bool(linedef.arg1 & (1 << f)))
 
         for sidedef in m.sidedefs:
 
