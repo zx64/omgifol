@@ -319,8 +319,9 @@ class UMapEditor:
                     check = flag[0] != '!'
                     setattr(block, flag, bool(thing.flags & (1 << f)) == check)
 
-            if hexencompat and thing.action:
-                block.special = thing.action
+            if hexencompat:
+                if thing.action:
+                    block.special = thing.action
                 for i in range(5):
                     key = 'arg{0}'.format(i)
                     setattr(block, key, getattr(thing, key))
