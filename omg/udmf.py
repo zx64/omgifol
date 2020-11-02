@@ -350,6 +350,8 @@ class UMapEditor:
                 trigger = ((linedef.flags & 0x1c00) >> 10) - 1
                 if trigger >= 0 and trigger < len(ULinedef.triggers_hexen):
                     setattr(block, ULinedef.triggers_hexen[trigger], True)
+                elif linedef.back != -1 and linedef.action > 0:
+                    block.playercross = True
             if hexencompat and linedef.action == 121:
                 for f in range(len(ULinedef.moreflags_hexen)):
                     setattr(block, ULinedef.moreflags_hexen[f], bool(linedef.arg1 & (1 << f)))
